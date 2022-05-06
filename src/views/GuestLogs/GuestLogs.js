@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useUserContext } from '../../context/UserContext';
 import { getEntries } from '../../services/entries';
 
 export default function Entry() {
   const [entries, setEntries] = useState([]);
+  const { currentUser } = useUserContext();
 
   useEffect(() => {
     const fetchTodoData = async () => {
