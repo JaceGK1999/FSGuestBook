@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import NewEntry from './CreateEntry';
+import userEvent from '@testing-library/user-event';
 
 // const user = {
 //   id: 1,
@@ -9,7 +10,7 @@ import NewEntry from './CreateEntry';
 
 // const server = setUpServer(
 //   rest.get(
-//     `${process.enc.REACT_APP_SUPABASE_URL}/rest/v1/users`,
+//     `https://ezwbsacoojmonmiqffad.supabase.co/rest/v1/entries`,
 //     (req, res, ctx) => res(ctx.json([user]))
 //   )
 // );
@@ -20,18 +21,23 @@ import NewEntry from './CreateEntry';
 describe(
   'create an entry',
   () =>
-    it('NewEntry component should render', async () => {
+    it('NewEntry component should render', () => {
       render(<NewEntry />);
 
-      screen.findAllByPlaceholderText('Add new entry');
+      screen.findByPlaceholderText('Add new entry');
 
       const test = screen.getByRole('button');
-
-      screen.debug();
 
       expect(test).toBeInTheDocument();
     }),
   it('User should be able to create an entry', async () => {
-      render(<NewEntry />);
+    render(<NewEntry />);
+
+    // const { input } = setup();
+    const input = await screen.findByPlaceholderText('Add new entry');
+
+    userEvent.type(input, 'test');
+    screen.debug();
+    expect(input.value).toBe('test');
   })
 );

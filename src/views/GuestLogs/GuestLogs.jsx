@@ -7,11 +7,11 @@ export default function Entry() {
   const { currentUser } = useUserContext();
 
   useEffect(() => {
-    const fetchTodoData = async () => {
+    const fetchEntryData = async () => {
       const data = await getEntries();
       setEntries(data);
     };
-    fetchTodoData();
+    fetchEntryData();
   }, []);
 
   return (
