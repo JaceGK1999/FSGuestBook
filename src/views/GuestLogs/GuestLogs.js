@@ -16,7 +16,7 @@ export default function Entry() {
     <ul className="entry-list">
       {entries.map((item) => (
         <li key={item.id}>
-          {item.content} - {item.user.email} - {item.date}
+          {item.content} - {currentUser.email} - {item.created_at}
         </li>
       ))}
     </ul>
