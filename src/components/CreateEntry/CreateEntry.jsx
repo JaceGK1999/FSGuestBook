@@ -15,7 +15,7 @@ export default function NewEntry() {
         value={newEntry}
         onChange={(e) => setNewEntry(e.target.value)}
         type="text"
-        placeholder="Add new task"
+        placeholder="Add new entry"
       />{' '}
       <button onClick={handleSubmit}>Submit</button>
     </div>
