@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import { signInUser, signUpUser } from '../../services/user';
 
-export function Auth({ setCurrentUser }) {
+export function Login() {
+  const { setCurrentUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,9 +14,9 @@ export function Auth({ setCurrentUser }) {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const resp = await signInUser(email, password);
-      setCurrentUser(resp.email);
-      history.push('/todo');
+      const resp = await signInUser({ email, password });
+      setCurrentUser(resp);
+      history.push('/');
     } catch (error) {
       setError(e.message);
     }
@@ -23,9 +25,9 @@ export function Auth({ setCurrentUser }) {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const resp = await signUpUser(email, password);
-      setCurrentUser(resp.email);
-      history.push('/todo');
+      const resp = await signUpUser({ email, password });
+      setCurrentUser(resp);
+      history.push('/');
     } catch (error) {
       setError(e.message);
     }
